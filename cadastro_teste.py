@@ -44,13 +44,21 @@ driver.find_element(By.NAME, 'password').send_keys("ran123")
 driver.find_element(By.NAME, 'confirmaPassword').send_keys("ran123")
 
 data_nascimento_input = driver.find_element(By.NAME, 'dataNascimento')
-slow_type(data_nascimento_input, "20041225")
-# driver.find_element(By.NAME, 'dataNascimento').send_keys("15252004")
-# Preenchendo o CPF via JavaScript
+(data_nascimento_input, "20041225")
 
-# Preenchendo a data de nascimento via JavaScript
+datanasc = "25022007"
+actions = ActionChains(driver)
+actions.move_to_element(data_nascimento_input)
+actions.click()
+for digit in datanasc:
+    actions.send_keys(digit)
+    actions.pause(0.1)  
+actions.perform()
 
+driver.find_element(By.XPATH, '//*[@id="root"]/header/form/input[9]').click()
 
+#aguardando 2 segundos para ver se a pagina foi redirecionada
+time.sleep(2)
 
 
 #botao de emissão e dando um click
